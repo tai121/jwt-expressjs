@@ -9,11 +9,6 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
-// app.use((req,res)=>{
-//     console.log("hithere!!!")
-//     res.send("hi")
-// })
-
 const authRouter = require('./routes/auth.route')
 app.use('/api/auth',authRouter)
 

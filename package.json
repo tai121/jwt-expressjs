@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "start": "node app.js"
   },
   "repository": "https://github.com/tai121/jwt-expressjs.git",
   "author": "taipham",
