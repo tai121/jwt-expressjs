@@ -4,7 +4,6 @@ const User = require('../models/User.model')
 const createError = require('http-errors')
 const bcrypt = require('bcrypt')
 const {timeExpire} = require('../config/constant.config')
-const {registerValidator} = require('../validations/auth.validations')
 
 
 module.exports = {
@@ -67,16 +66,17 @@ module.exports = {
     signup : async(req, res, next) => {
         try {
             //validate email password
-            const { error } = registerValidator(req.body)
-            if(error)
-                throw createError(422,error.details[0].message)
+            // console.log(req.body.email)
 
             //check valid email
-            const existEmail = async (email) => {
-                let user = await User.findOne({ email });
-                return user ?? true
+            const existEmail = async(email) => {
+                let user = await User.findOne({ email: email });
+                // console.log(user)
+                if(user == null) return false
+                return true
             }
-            if(existEmail)
+            // console.log(await existEmail(req.body.email))
+            if(await existEmail(req.body.email))
                 throw createError(400,'this email is alreadly taken')
 
             //Add user to db

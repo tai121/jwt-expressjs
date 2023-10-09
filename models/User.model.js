@@ -5,10 +5,13 @@ const UserSchema = new Schema(
     name: {
       type: String,
       required: true,
+      minlength: 4,
+      maxlength: 20,
     },
     email: {
       type: String,
       required: true,
+      match: /^\S+@\S+\.\S+$/,
     },
     permissions: {
       type: [String],
@@ -17,6 +20,7 @@ const UserSchema = new Schema(
     password: {
       type: String,
       required: true,
+      minlength: 4,
     },
     avatar: {
       type: String,

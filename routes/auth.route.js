@@ -13,4 +13,9 @@ router.post('/login', authController.login)
 
 router.post('/signup', authController.signup)
 
+router.get('/' ,async(req,res,next)=>{
+    let users = await User.find({})
+    res.send(users)
+})
+
 module.exports = router
